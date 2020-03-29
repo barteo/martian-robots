@@ -3,15 +3,15 @@ package com.redbadger.robots
 import java.lang.Integer.parseInt
 import java.lang.NumberFormatException
 
-class MarsSurfaceDimensionMessage private constructor() {
+class MarsSurfaceDimensionsMessage private constructor() {
     companion object {
-        fun decode(message: String): MarsSurfaceDimension {
+        fun decode(message: String): MarsSurfaceDimensions {
             val dimension =  message.trim().split(" ")
             if (dimension.size != 2) {
                 throw ParseException()
             }
             try {
-                return MarsSurfaceDimension(
+                return MarsSurfaceDimensions(
                     southNorthSize = parseInt(dimension[0]),
                     eastWestSize = parseInt(dimension[1])
                 )

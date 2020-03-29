@@ -9,15 +9,15 @@ class MarsSurfaceDimensionMessageTest {
     fun decodeShouldThrowExceptionWhenParseError() {
         // TODO make complete list of parsing errors
         assertFailsWith(ParseException::class) {
-            MarsSurfaceDimensionMessage.decode("")
+            MarsSurfaceDimensionsMessage.decode("")
         }
     }
 
     @Test
     fun decodeShouldReturnObjectWhenParseSucceeded() {
-        val test = MarsSurfaceDimensionMessage.decode("5 3\n")
+        val test = MarsSurfaceDimensionsMessage.decode("5 3\n")
         assertEquals(
-            MarsSurfaceDimension(
+            MarsSurfaceDimensions(
                 southNorthSize = 5,
                 eastWestSize = 3
             ),

@@ -36,7 +36,7 @@ data class RobotOutput(
     val status: RobotStatus
 )
 
-data class MarsSurfaceDimension(
+data class MarsSurfaceDimensions(
     val southNorthSize: Int,
     val eastWestSize: Int
 )

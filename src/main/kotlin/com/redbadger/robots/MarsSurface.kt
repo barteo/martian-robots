@@ -1,7 +1,7 @@
 package com.redbadger.robots
 
 class MarsSurface constructor(
-    val dimension: MarsSurfaceDimension
+    val dimensions: MarsSurfaceDimensions
 ) {
     fun moveRobot(
         robotsInput: RobotInput

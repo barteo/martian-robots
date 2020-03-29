@@ -20,7 +20,7 @@ class End2EndTest {
     @Test
     fun sampleDataTest() {
         val marsSurface = MarsSurface(
-            MarsSurfaceDimensionMessage.decode(
+            MarsSurfaceDimensionsMessage.decode(
                 inputMarsSurfaceDimensionsMessage
             )
         )
