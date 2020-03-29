@@ -8,8 +8,8 @@ enum class Orientation(val orientation: Char) {
 }
 
 data class RobotPosition(
-    val x: Int, // eastWest
-    val y: Int, // southNorth
+    val x: Int,
+    val y: Int,
     val orientation: Orientation
 )
 
@@ -37,6 +37,6 @@ data class RobotOutput(
 )
 
 data class MarsSurfaceDimensions(
-    val southNorthSize: Int,
-    val eastWestSize: Int
+    val northMaxCoordinate: Int,
+    val eastMaxCoordinate: Int
 )

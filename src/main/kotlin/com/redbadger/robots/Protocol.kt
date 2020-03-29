@@ -12,8 +12,8 @@ class MarsSurfaceDimensionsMessage private constructor() {
             }
             try {
                 return MarsSurfaceDimensions(
-                    southNorthSize = parseInt(dimension[0]),
-                    eastWestSize = parseInt(dimension[1])
+                    eastMaxCoordinate = parseInt(dimension[0]),
+                    northMaxCoordinate = parseInt(dimension[1])
                 )
             } catch (e: NumberFormatException) {
                 throw ParseException()
@@ -36,8 +36,8 @@ class RobotInputMessage private constructor() {
             }
             try {
                 val initialPosition = RobotPosition(
-                    x = parseInt(items[1]),
-                    y = parseInt(items[0]),
+                    x = parseInt(items[0]),
+                    y = parseInt(items[1]),
                     orientation = parseOrientation(items[2])
                 )
                 val instructions = mutableListOf<RobotInstruction>()
@@ -83,11 +83,12 @@ class RobotOutputMessage private constructor() {
     companion object {
         fun encode(robotOutput: RobotOutput): String {
             val position =
+                "${robotOutput.finalPosition.x} " +
                 "${robotOutput.finalPosition.y} " +
-                "${robotOutput.finalPosition.x}"
+                "${robotOutput.finalPosition.orientation.orientation}"
             return when (robotOutput.status) {
-                RobotStatus.LOST -> "$position ${RobotStatus.LOST.name}"
-                else -> position
+                RobotStatus.LOST -> "$position ${RobotStatus.LOST.name}\n"
+                else -> "$position\n"
             }
         }
     }

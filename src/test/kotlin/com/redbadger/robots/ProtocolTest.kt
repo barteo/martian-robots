@@ -18,8 +18,8 @@ class MarsSurfaceDimensionMessageTest {
         val test = MarsSurfaceDimensionsMessage.decode("5 3\n")
         assertEquals(
             MarsSurfaceDimensions(
-                southNorthSize = 5,
-                eastWestSize = 3
+                eastMaxCoordinate = 5,
+                northMaxCoordinate = 3
             ),
             test
         )
@@ -74,7 +74,7 @@ class RobotOutputMessageTest {
                 status = RobotStatus.LOST
             )
         )
-        assertEquals("1 1 LOST", test)
+        assertEquals("1 1 E LOST\n", test)
     }
 
     @Test
@@ -89,6 +89,6 @@ class RobotOutputMessageTest {
                 status = RobotStatus.RESPONDING
             )
         )
-        assertEquals("1 1", test)
+        assertEquals("1 1 E\n", test)
     }
 }
