@@ -24,14 +24,21 @@ class End2EndTest {
                 inputMarsSurfaceDimensionsMessage
             )
         )
+        assertEquals(
+            marsSurface,
+            MarsSurfaceDimension(
+                southNorthSize = 5,
+                eastWestSize = 3
+            )
+        )
 
         for ((input, output) in inputRobotsMessages.zip(outputRobotsMessages)) {
             val robotOutput = marsSurface.moveRobot(
                 RobotInputMessage.decode(input)
             )
             assertEquals(
-                output,
-                RobotOutputMessage.encode(robotOutput)
+                RobotOutputMessage.encode(robotOutput),
+                output
             )
         }
     }

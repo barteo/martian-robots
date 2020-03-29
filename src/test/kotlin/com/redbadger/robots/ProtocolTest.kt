@@ -17,11 +17,11 @@ class MarsSurfaceDimensionMessageTest {
     fun decodeShouldReturnObjectWhenParseSucceeded() {
         val test = MarsSurfaceDimensionMessage.decode("5 3\n")
         assertEquals(
-            test,
             MarsSurfaceDimension(
-                eastWestSize = 5,
-                southNorthSize = 3
-            )
+                southNorthSize = 5,
+                eastWestSize = 3
+            ),
+            test
         )
     }
 }
@@ -39,7 +39,6 @@ class RobotInputMessageTest {
     fun decodeShouldReturnObjectWhenParseSucceeded() {
         val test = RobotInputMessage.decode("1 1 E\nRFRFRFRF\n")
         assertEquals(
-            test,
             RobotInput(
                 initialPosition = RobotPosition(
                     x = 1,
@@ -56,23 +55,40 @@ class RobotInputMessageTest {
                     RobotInstruction.RIGHT,
                     RobotInstruction.FORWARD
                 )
-            )
+            ),
+            test
         )
     }
 }
 
 class RobotOutputMessageTest {
     @Test
-    fun encodeShouldReturnString() {
+    fun encodeShouldReturnLostStringWhenStatusLost() {
         val test = RobotOutputMessage.encode(
             RobotOutput(
                 finalPosition = RobotPosition(
                     x = 1,
                     y = 1,
                     orientation = Orientation.EAST
-                )
+                ),
+                status = RobotStatus.LOST
             )
         )
-        assertEquals(test, "1 1 E")
+        assertEquals("1 1 LOST", test)
+    }
+
+    @Test
+    fun encodeShouldReturnRespondingStringWhenStatusResponding() {
+        val test = RobotOutputMessage.encode(
+            RobotOutput(
+                finalPosition = RobotPosition(
+                    x = 1,
+                    y = 1,
+                    orientation = Orientation.EAST
+                ),
+                status = RobotStatus.RESPONDING
+            )
+        )
+        assertEquals("1 1", test)
     }
 }
